@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const handleClick = (e) => {
-    const btn = e.target.closest("[data-next]");
+    const btn = e.target.closest(".go-next");
     if (!btn) return;
 
     const sections = getSections();
