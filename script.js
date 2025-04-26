@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateProgress = () => {
     const progressFill = document.getElementById("progressFill");
-    const totalSteps = getSections().length - 1;
-    const completedSteps = Math.max(0, activeIndex - 1);
+    const totalSteps = getSections().length - 2; // -2 omdat heroimage en prelander geen echte stappen zijn
+    const completedSteps = Math.max(0, activeIndex - 2);
     const percentage = Math.min(100, (completedSteps / totalSteps) * 100);
 
     if (progressFill) {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Init
   const sections = getSections();
   if (sections.length > 0) {
-    showOnlySection(0); // alleen hero + prelander zichtbaar
+    showOnlySection(0); // Alleen heroimage zichtbaar bij starten
     document.body.addEventListener("click", handleClick);
   }
 });
