@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Hero image kleiner maken na de eerste klik
-    const hero = document.querySelector("#hero");
+    const hero = document.querySelector("#heroimage");
     if (hero) {
       if (index > 0) {
         hero.classList.add("hero-small");
