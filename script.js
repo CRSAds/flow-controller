@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     activeIndex = Math.min(activeIndex + 1, sections.length - 1);
     showOnlySection(activeIndex);
 
-    // Hero image verkleinen en progressbar tonen bij eerste klik
+    // Hero image verkleinen + progressbar tonen na eerste klik
     if (activeIndex === 1) {
       document.getElementById("heroimage")?.classList.add("hero-small");
       document.getElementById("progressbar")?.classList.add("progressbar-visible");
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateProgress = () => {
     const progressFill = document.getElementById("progressFill");
-    const totalSteps = getSections().length - 1; // -1 want na de hero klik begint pas echt de flow
-    const completedSteps = Math.max(0, activeIndex - 1); // hero+prelander tellen niet mee
+    const totalSteps = getSections().length - 1;
+    const completedSteps = Math.max(0, activeIndex - 1);
     const percentage = Math.min(100, (completedSteps / totalSteps) * 100);
 
     if (progressFill) {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Init
   const sections = getSections();
   if (sections.length > 0) {
-    showOnlySection(0); // alleen heroimage + prelander zichtbaar
+    showOnlySection(0); // alleen hero + prelander zichtbaar
     document.body.addEventListener("click", handleClick);
   }
 });
