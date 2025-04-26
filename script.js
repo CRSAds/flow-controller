@@ -1,71 +1,60 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const sectionIds = [
-    "heroimage",
-    "prelander",
-    "surveyquestion",
-    "surveyquestion",
-    "surveyquestion",
-    "shortform",
-    "longform",
-    "bedanktscherm" // ✅ correct gespeld
-  ];
+const sectionIds = [
+  "heroimage",
+  "prelander",
+  "surveyquestion",
+  "surveyquestion",
+  "surveyquestion",
+  "shortform",
+  "longform",
+  "bedanktscherm"
+];
 
-  let activeIndex = 0;
+let activeIndex = 0;
 
-  const getSections = () => {
-    return sectionIds
-      .map(id => document.getElementById(id))
-      .filter(el => el);
-  };
+const getSections = () => {
+  return sectionIds.flatMap(id => Array.from(document.querySelectorAll(`#${id}`))).filter(el => el);
+};
 
-  const showOnlySection = (index) => {
-    const sections = getSections();
-    sections.forEach((section, i) => {
-      section.style.display = i === index ? "block" : "none";
-    });
+const showOnlySection = (index) => {
+  const sections = getSections();
+  sections.forEach((section, i) => {
+    section.style.display = i === index ? "block" : "none";
+  });
+};
 
-    // Progressbar pas tonen vanaf survey
-    const progressbar = document.getElementById('progressbar');
-    if (progressbar) {
-      progressbar.style.display = index > 1 ? 'block' : 'none';
-    }
+const handleClick = (e) => {
+  const btn = e.target.closest("[data-next]");
+  if (!btn) return;
 
-    // Hero verkleinen na prelander
-    const hero = document.getElementById('heroimage');
-    if (hero) {
-      if (index > 1) {
-        hero.classList.add('hero-small');
-      } else {
-        hero.classList.remove('hero-small');
-      }
-    }
+  const sections = getSections();
 
-    updateProgressbar(index);
-  };
+  activeIndex = Math.min(activeIndex + 1, sections.length - 1);
+  showOnlySection(activeIndex);
+  updateProgressbar();
 
-  const updateProgressbar = (index) => {
-    const progress = document.getElementById("progress");
-    const totalSteps = getSections().length - 2; // hero + prelander tellen niet mee
-    const realIndex = Math.max(0, index - 2);
-    if (progress) {
-      const percentage = Math.min(100, (realIndex / totalSteps) * 100);
-      progress.style.width = `${percentage}%`;
-    }
-  };
+  // Hero verkleinen na eerste klik
+  if (activeIndex === 2) {
+    document.getElementById("heroimage")?.classList.add("hero-small");
+    document.getElementById("progressbar")?.classList.add("progress-visible");
+  }
+};
 
-  const handleClick = (e) => {
-    const btn = e.target.closest("[data-next]");
-    if (!btn) return;
+const updateProgressbar = () => {
+  const progressFill = document.getElementById("progressFill");
+  const totalSteps = getSections().length - 2; // zonder hero + prelander
+  const currentStep = Math.max(0, activeIndex - 1); // na hero + prelander pas tellen
 
-    const sections = getSections();
-    activeIndex = Math.min(activeIndex + 1, sections.length - 1);
-    showOnlySection(activeIndex);
-  };
+  if (progressFill) {
+    const percentage = Math.min(100, (currentStep / totalSteps) * 100);
+    progressFill.style.width = `${percentage}%`;
+  }
+};
 
-  // Init
+// Init
+window.addEventListener("DOMContentLoaded", () => {
   const sections = getSections();
   if (sections.length > 0) {
     showOnlySection(0);
-    document.body.addEventListener("click", handleClick);
   }
+  document.body.addEventListener("click", handleClick);
 });
