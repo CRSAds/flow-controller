@@ -2,38 +2,37 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Win een E-bike!</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://flow-controller.vercel.app/style.css">
 </head>
 <body>
 
-<!-- Prelander -->
-<section id="prelander">
-  <img src="https://via.placeholder.com/100x60?text=E-bike" alt="E-bike winnen">
-  <h1>Win een Gazelle E-bike! 🚲</h1>
-  <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
-  <button id="startButton" class="primary-button">Doe mee</button>
-</section>
+  <!-- Startscherm (Prelander) -->
+  <section id="prelander">
+    <img src="https://via.placeholder.com/100x60?text=E-bike" alt="E-bike">
+    <h1>Win een Gazelle E-bike! 🚲</h1>
+    <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
+    <button id="startButton" class="form-button">Doe mee</button>
+  </section>
 
-<!-- Progressbar -->
-<div id="progressContainer" style="display:none;">
-  <img src="https://via.placeholder.com/80x50?text=E-bike" alt="E-bike" class="small-hero">
-  <div class="progress-content">
-    <h2>Op weg naar je prijs</h2>
+  <!-- Progressbar + Flow -->
+  <div id="progressContainer" style="display: none;">
+    <div class="progress-header">
+      <img src="https://via.placeholder.com/80x50?text=E-bike" alt="E-bike">
+      <h2>Op weg naar je prijs</h2>
+    </div>
     <div id="progressBar">
       <div id="progress"></div>
     </div>
-  </div>
-</div>
 
-<!-- Flow -->
-<section id="flow" style="display:none;">
-  <div id="questionContainer">
-    <!-- Hier worden vragen en formulieren dynamisch geladen -->
+    <section id="flow">
+      <div id="questionContainer">
+        <!-- Dynamische vragen + formulieren worden hier geladen -->
+      </div>
+    </section>
   </div>
-</section>
 
-<script src="script.js" defer></script>
+  <script src="https://flow-controller.vercel.app/script.js" defer></script>
 </body>
 </html>
