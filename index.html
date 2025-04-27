@@ -1,35 +1,108 @@
-<section id="shortForm">
-  <h2>Vul je gegevens in.</h2>
-  <div class="form-card">
-    <div class="gender-group">
-      <label><input type="radio" name="gender" value="De heer" required> De heer</label>
-      <label><input type="radio" name="gender" value="Mevrouw" required> Mevrouw</label>
-    </div>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Win een Gazelle E-bike!</title>
+  <link rel="stylesheet" href="https://flow-controller.vercel.app/style.css">
+  <script src="https://flow-controller.vercel.app/script.js" defer></script>
+</head>
+<body>
 
-    <div class="form-group">
-      <label for="firstname">Naam</label>
-      <input type="text" id="firstname" name="firstname" placeholder="Je voornaam" autocomplete="given-name" required>
-    </div>
+  <!-- Prelander -->
+  <section id="prelander">
+    <img src="https://via.placeholder.com/300x200?text=E-bike" alt="E-bike winnen">
+    <h1>Win een Gazelle E-bike! 🚲</h1>
+    <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
+    <button id="startButton" class="form-button">Doe mee</button>
+  </section>
 
-    <div class="form-group">
-      <label for="lastname">Achternaam</label>
-      <input type="text" id="lastname" name="lastname" placeholder="Je achternaam" autocomplete="family-name" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="Vul je e-mailadres in" autocomplete="email" required>
-    </div>
-
-    <div class="form-group">
-      <label>Geboortedatum</label>
-      <div class="birthdate-group">
-        <input type="text" id="birthdate-day" name="birthdate-day" placeholder="DD" maxlength="2" inputmode="numeric" required>
-        <input type="text" id="birthdate-month" name="birthdate-month" placeholder="MM" maxlength="2" inputmode="numeric" required>
-        <input type="text" id="birthdate-year" name="birthdate-year" placeholder="JJJJ" maxlength="4" inputmode="numeric" required>
+  <!-- Progressbar -->
+  <div id="progressContainer" style="display:none;">
+    <img src="https://via.placeholder.com/80x50?text=E-bike" alt="E-bike" class="small-hero">
+    <div class="progress-content">
+      <h2>Op weg naar je prijs</h2>
+      <div id="progressBar">
+        <div id="progress"></div>
       </div>
     </div>
-
-    <button type="submit" id="shortFormNext" class="form-button">Ga Verder</button>
   </div>
-</section>
+
+  <!-- Flow container -->
+  <section id="flow" style="display:none;">
+    <div id="questionContainer">
+      <!-- Hier worden surveyvragen en formulieren geladen door script.js -->
+    </div>
+  </section>
+
+  <!-- Formulieren templates -->
+  <template id="shortformTemplate">
+    <form id="shortform" class="form-section">
+      <h2>Vul je gegevens in.</h2>
+
+      <div class="form-group">
+        <label>Geslacht</label>
+        <div class="gender-group">
+          <label><input type="radio" name="gender" value="De heer" required> De heer</label>
+          <label><input type="radio" name="gender" value="Mevrouw"> Mevrouw</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Voornaam</label>
+        <input type="text" name="firstname" placeholder="Je voornaam" autocomplete="given-name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Achternaam</label>
+        <input type="text" name="lastname" placeholder="Je achternaam" autocomplete="family-name" required>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" name="email" placeholder="Vul je e-mailadres in" autocomplete="email" required>
+      </div>
+
+      <div class="form-group">
+        <label>Geboortedatum</label>
+        <div class="birthdate-group">
+          <input type="text" name="birth_day" placeholder="DD" maxlength="2" inputmode="numeric" required>
+          <input type="text" name="birth_month" placeholder="MM" maxlength="2" inputmode="numeric" required>
+          <input type="text" name="birth_year" placeholder="JJJJ" maxlength="4" inputmode="numeric" required>
+        </div>
+      </div>
+
+      <button type="submit" class="form-button">Ga verder</button>
+    </form>
+  </template>
+
+  <template id="longformTemplate">
+    <form id="longform" class="form-section">
+      <h2>Bijna klaar!</h2>
+
+      <div class="form-group">
+        <label>Postcode</label>
+        <input type="text" name="zipcode" placeholder="1234AB" autocomplete="postal-code" required>
+      </div>
+
+      <div class="form-group">
+        <label>Straat en huisnummer</label>
+        <input type="text" name="address" placeholder="Straatnaam 123" autocomplete="address-line1" required>
+      </div>
+
+      <div class="form-group">
+        <label>Woonplaats</label>
+        <input type="text" name="city" placeholder="Je woonplaats" autocomplete="address-level2" required>
+      </div>
+
+      <div class="form-group">
+        <label>Telefoonnummer</label>
+        <input type="tel" name="phone" placeholder="0612345678" autocomplete="tel" required>
+      </div>
+
+      <button type="submit" class="form-button">Verstuur</button>
+    </form>
+  </template>
+
+</body>
+</html>
