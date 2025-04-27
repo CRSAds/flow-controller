@@ -8,27 +8,31 @@
 </head>
 <body>
 
-<!-- Startscreen -->
-<section id="startScreen" class="start-screen">
-  <img src="URL-NAAR-JE-GROTE-AFBEELDING" alt="E-bike winnen" class="hero-image">
+<!-- Start scherm -->
+<section id="prelander">
+  <img src="https://via.placeholder.com/300x200?text=E-bike" alt="E-bike winnen">
   <h1>Win een Gazelle E-bike! 🚲</h1>
   <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
-  <button id="startButton">Doe mee</button>
+  <button id="startButton" class="form-button">Doe mee</button>
 </section>
 
-<!-- Progressbar (verborgen bij start) -->
-<div id="progressContainer" class="progress-container">
-  <img src="URL-NAAR-JE-KLEINE-AFBEELDING" alt="E-bike" class="small-hero">
+<!-- Progressbar -->
+<div id="progressContainer" style="display:none;">
+  <img src="https://via.placeholder.com/80x50?text=E-bike" alt="E-bike" class="small-hero">
   <div class="progress-content">
     <h2>Op weg naar je prijs</h2>
-    <div class="progress-bar">
-      <div id="progressFill" class="progress-fill"></div>
+    <div id="progressBar">
+      <div id="progress"></div>
     </div>
   </div>
 </div>
 
-<!-- Vragen -->
-<section id="questionContainer" class="question-container"></section>
+<!-- Flow -->
+<section id="flow" style="display:none;">
+  <div id="questionContainer">
+    <!-- Hier komen vragen en formulieren dynamisch -->
+  </div>
+</section>
 
 <script src="script.js" defer></script>
 
