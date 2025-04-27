@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Win een E-bike!</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<!-- Start scherm -->
+<!-- PRELANDER -->
 <section id="prelander">
   <img src="https://via.placeholder.com/300x200?text=E-bike" alt="E-bike winnen">
   <h1>Win een Gazelle E-bike! 🚲</h1>
@@ -16,7 +6,7 @@
   <button id="startButton" class="form-button">Doe mee</button>
 </section>
 
-<!-- Progressbar -->
+<!-- PROGRESS CONTAINER -->
 <div id="progressContainer" style="display:none;">
   <img src="https://via.placeholder.com/80x50?text=E-bike" alt="E-bike" class="small-hero">
   <div class="progress-content">
@@ -27,14 +17,67 @@
   </div>
 </div>
 
-<!-- Flow -->
+<!-- FLOW CONTAINER -->
 <section id="flow" style="display:none;">
   <div id="questionContainer">
-    <!-- Hier komen vragen en formulieren dynamisch -->
+    <!-- Hier worden dynamisch vragen en formulieren geladen -->
   </div>
 </section>
 
-<script src="script.js" defer></script>
+<!-- SHORTFORM -->
+<section id="shortform" style="display:none;">
+  <form id="shortForm" class="custom-form">
+    <div class="form-group">
+      <label for="gender">Geslacht</label>
+      <select id="gender" name="gender" required>
+        <option value="">Kies...</option>
+        <option value="De heer">De heer</option>
+        <option value="Mevrouw">Mevrouw</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="firstname">Voornaam</label>
+      <input type="text" id="firstname" name="firstname" autocomplete="given-name" required>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Achternaam</label>
+      <input type="text" id="lastname" name="lastname" autocomplete="family-name" required>
+    </div>
+    <div class="form-group">
+      <label>Geboortedatum</label>
+      <div class="birthdate-group">
+        <input type="number" id="birthDay" name="birthDay" placeholder="DD" inputmode="numeric" maxlength="2" required>
+        <input type="number" id="birthMonth" name="birthMonth" placeholder="MM" inputmode="numeric" maxlength="2" required>
+        <input type="number" id="birthYear" name="birthYear" placeholder="JJJJ" inputmode="numeric" maxlength="4" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" autocomplete="email" required>
+    </div>
+    <button type="submit" class="form-button">Ga verder</button>
+  </form>
+</section>
 
-</body>
-</html>
+<!-- LONGFORM -->
+<section id="longform" style="display:none;">
+  <form id="longForm" class="custom-form">
+    <div class="form-group">
+      <label for="postcode">Postcode</label>
+      <input type="text" id="postcode" name="postcode" autocomplete="postal-code" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Straat + huisnummer</label>
+      <input type="text" id="address" name="address" autocomplete="street-address" required>
+    </div>
+    <div class="form-group">
+      <label for="city">Woonplaats</label>
+      <input type="text" id="city" name="city" autocomplete="address-level2" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Telefoonnummer</label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+    </div>
+    <button type="submit" class="form-button">Ga verder</button>
+  </form>
+</section>
