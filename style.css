@@ -107,30 +107,12 @@ select {
   padding: 12px 14px;
   margin-bottom: 12px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
 }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.birthdate-group {
-  display: flex;
-  gap: 10px;
-}
-
-.birthdate-group input[type="number"] {
-  flex: 1;
-  text-align: center;
-  padding: 12px;
-  font-size: 16px;
-}
-
+/* Form submit button */
 button[type="submit"] {
   background-color: #263ded;
   color: white;
@@ -140,4 +122,31 @@ button[type="submit"] {
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
+  margin-top: 12px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Geboortedatum netjes */
+.birthdate-group {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.birthdate-group input[type="number"] {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
