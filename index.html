@@ -2,38 +2,35 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-bike winnen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Win een E-bike!</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <section id="intro">
-    <img src="https://via.placeholder.com/150x100?text=E-bike" alt="E-bike winnen">
-    <h1>Win een Gazelle E-bike! 🚲</h1>
-    <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
-    <button id="startButton">Doe mee</button>
-  </section>
 
-  <header id="progressHeader" class="hidden">
-    <img id="smallImage" src="https://via.placeholder.com/80x60?text=E-bike" alt="E-bike">
-    <div>
-      <p class="progress-title">Op weg naar je prijs</p>
-      <div id="progressContainer">
-        <div id="progressBar"></div>
-      </div>
+<!-- Startscreen -->
+<section id="startScreen" class="start-screen">
+  <img src="URL-NAAR-JE-GROTE-AFBEELDING" alt="E-bike winnen" class="hero-image">
+  <h1>Win een Gazelle E-bike! 🚲</h1>
+  <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
+  <button id="startButton">Doe mee</button>
+</section>
+
+<!-- Progressbar (verborgen bij start) -->
+<div id="progressContainer" class="progress-container">
+  <img src="URL-NAAR-JE-KLEINE-AFBEELDING" alt="E-bike" class="small-hero">
+  <div class="progress-content">
+    <h2>Op weg naar je prijs</h2>
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
     </div>
-  </header>
+  </div>
+</div>
 
-  <section id="survey" class="hidden">
-    <h2 id="question">Hoe vaak zit jij op de fiets?</h2>
-    <div id="answers">
-      <button>Elke dag</button>
-      <button>Paar keer per week</button>
-      <button>Paar keer per maand</button>
-      <button>Anders</button>
-    </div>
-  </section>
+<!-- Vragen -->
+<section id="questionContainer" class="question-container"></section>
 
-  <script src="script.js"></script>
+<script src="script.js" defer></script>
+
 </body>
 </html>
