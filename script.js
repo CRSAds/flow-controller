@@ -1,166 +1,185 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.getElementById("startButton");
-  const prelander = document.getElementById("prelander");
-  const flow = document.getElementById("flow");
-  const questionContainer = document.getElementById("questionContainer");
-  const progress = document.getElementById("progress");
-  const progressContainer = document.getElementById("progressContainer");
+// Elementen ophalen
+const prelander = document.getElementById('prelander');
+const startButton = document.getElementById('startButton');
+const progressContainer = document.getElementById('progressContainer');
+const progressBar = document.getElementById('progress');
+const flow = document.getElementById('flow');
+const questionContainer = document.getElementById('questionContainer');
 
-  let currentStep = 0;
+// Vragen + Formulieren setup
+const questions = [
+  {
+    type: 'question',
+    title: 'Hoe vaak zit jij op de fiets?',
+    options: ['Elke dag', 'Paar keer per week', 'Paar keer per maand', 'Anders']
+  },
+  {
+    type: 'question',
+    title: 'Waar gebruik jij de fiets meestal voor?',
+    options: ['Woon - Werkverkeer', 'Boodschappen', 'Vrije tijd', 'Anders']
+  },
+  {
+    type: 'shortform',
+    title: 'Vul je gegevens in'
+  },
+  {
+    type: 'longform',
+    title: 'Waar kunnen we je bereiken?'
+  },
+  {
+    type: 'thankyou',
+    title: 'Bedankt voor je deelname! 🎉'
+  }
+];
 
-  const steps = [
-    {
-      question: "Hoe vaak zit jij op de fiets?",
-      answers: ["Elke dag", "Paar keer per week", "Paar keer per maand", "Anders"]
-    },
-    {
-      question: "Gebruik je de fiets vooral voor woon-werkverkeer?",
-      answers: ["Ja", "Nee"]
-    },
-    {
-      question: "Ben je geïnteresseerd in elektrische fietsen?",
-      answers: ["Zeker!", "Misschien", "Nee"]
-    },
-    {
-      form: "short"
-    },
-    {
-      form: "long"
-    }
-  ];
+let currentStep = 0;
 
-  const totalSteps = steps.length;
+// Start de flow
+startButton.addEventListener('click', () => {
+  prelander.style.display = 'none';
+  progressContainer.style.display = 'flex';
+  flow.style.display = 'block';
+  showStep();
+});
 
-  startButton.addEventListener("click", () => {
-    prelander.style.display = "none";
-    progressContainer.style.display = "flex";
-    flow.style.display = "block";
-    showStep();
+// Toon volgende stap
+function showStep() {
+  const step = questions[currentStep];
+  updateProgress();
+
+  if (!step) return;
+
+  questionContainer.innerHTML = '';
+
+  if (step.type === 'question') {
+    const title = document.createElement('h2');
+    title.className = 'question-title';
+    title.innerText = step.title;
+    questionContainer.appendChild(title);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'question-buttons';
+
+    step.options.forEach(option => {
+      const button = document.createElement('button');
+      button.innerText = option;
+      button.onclick = () => nextStep();
+      buttonContainer.appendChild(button);
+    });
+
+    questionContainer.appendChild(buttonContainer);
+  }
+
+  if (step.type === 'shortform') {
+    renderShortForm();
+  }
+
+  if (step.type === 'longform') {
+    renderLongForm();
+  }
+
+  if (step.type === 'thankyou') {
+    const title = document.createElement('h2');
+    title.className = 'question-title';
+    title.innerText = step.title;
+    questionContainer.appendChild(title);
+  }
+}
+
+// Volgende stap
+function nextStep() {
+  currentStep++;
+  showStep();
+}
+
+// Voortgangsbalk
+function updateProgress() {
+  const total = questions.length - 1;
+  const progress = (currentStep / total) * 100;
+  progressBar.style.width = `${progress}%`;
+}
+
+// Shortform renderen
+function renderShortForm() {
+  const form = document.createElement('form');
+  form.innerHTML = `
+    <label for="gender">Geslacht</label>
+    <select id="gender" required autocomplete="sex">
+      <option value="">Kies...</option>
+      <option value="man">De heer</option>
+      <option value="vrouw">Mevrouw</option>
+    </select>
+
+    <label for="firstName">Voornaam</label>
+    <input type="text" id="firstName" name="firstName" required autocomplete="given-name">
+
+    <label for="lastName">Achternaam</label>
+    <input type="text" id="lastName" name="lastName" required autocomplete="family-name">
+
+    <label for="birthdate">Geboortedatum</label>
+    <div class="birthdate-group">
+      <input type="tel" id="birthDay" name="birthDay" placeholder="DD" maxlength="2" pattern="[0-9]*" inputmode="numeric" required>
+      <input type="tel" id="birthMonth" name="birthMonth" placeholder="MM" maxlength="2" pattern="[0-9]*" inputmode="numeric" required>
+      <input type="tel" id="birthYear" name="birthYear" placeholder="JJJJ" maxlength="4" pattern="[0-9]*" inputmode="numeric" required>
+    </div>
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" required autocomplete="email">
+
+    <button type="submit" class="primary-button">Ga verder</button>
+  `;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    nextStep();
   });
 
-  function showStep() {
-    const current = steps[currentStep];
-    if (current.form === "short") {
-      questionContainer.innerHTML = `
-        <form id="shortForm">
-          <div>
-            <label>Geslacht</label>
-            <select name="gender" autocomplete="sex" required>
-              <option value="">Kies...</option>
-              <option value="De heer">De heer</option>
-              <option value="Mevrouw">Mevrouw</option>
-            </select>
-          </div>
-          <div>
-            <label>Voornaam</label>
-            <input type="text" name="firstName" autocomplete="given-name" required>
-          </div>
-          <div>
-            <label>Achternaam</label>
-            <input type="text" name="lastName" autocomplete="family-name" required>
-          </div>
-          <div>
-            <label>Geboortedatum</label>
-            <div class="birthdate-group">
-              <input type="number" name="birthDay" placeholder="DD" maxlength="2" required>
-              <input type="number" name="birthMonth" placeholder="MM" maxlength="2" required>
-              <input type="number" name="birthYear" placeholder="JJJJ" maxlength="4" required>
-            </div>
-          </div>
-          <div>
-            <label>E-mail</label>
-            <input type="email" name="email" autocomplete="email" required>
-          </div>
-          <button type="submit">Ga verder</button>
-        </form>
-      `;
+  setupAutoTab();
+  questionContainer.appendChild(form);
+}
 
-      setupBirthdateInputs();
+// Longform renderen
+function renderLongForm() {
+  const form = document.createElement('form');
+  form.innerHTML = `
+    <label for="zip">Postcode</label>
+    <input type="text" id="zip" name="zip" required autocomplete="postal-code">
 
-      document.getElementById("shortForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        nextStep();
-      });
+    <label for="address">Straat + huisnummer</label>
+    <input type="text" id="address" name="address" required autocomplete="street-address">
 
-    } else if (current.form === "long") {
-      questionContainer.innerHTML = `
-        <form id="longForm">
-          <div>
-            <label>Postcode</label>
-            <input type="text" name="zip" autocomplete="postal-code" required>
-          </div>
-          <div>
-            <label>Straat & huisnummer</label>
-            <input type="text" name="street" autocomplete="street-address" required>
-          </div>
-          <div>
-            <label>Woonplaats</label>
-            <input type="text" name="city" autocomplete="address-level2" required>
-          </div>
-          <div>
-            <label>Telefoonnummer</label>
-            <input type="tel" name="phone" autocomplete="tel" required>
-          </div>
-          <button type="submit">Verzenden</button>
-        </form>
-      `;
+    <label for="city">Woonplaats</label>
+    <input type="text" id="city" name="city" required autocomplete="address-level2">
 
-      document.getElementById("longForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        showThanks();
-      });
+    <label for="phone">Telefoonnummer</label>
+    <input type="tel" id="phone" name="phone" required autocomplete="tel">
 
-    } else {
-      questionContainer.innerHTML = `
-        <h2>${current.question}</h2>
-        ${current.answers.map(ans => `<button class="answer">${ans}</button>`).join('')}
-      `;
+    <button type="submit" class="primary-button">Verzenden</button>
+  `;
 
-      document.querySelectorAll('.answer').forEach(button => {
-        button.addEventListener('click', nextStep);
-      });
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    nextStep();
+  });
+
+  questionContainer.appendChild(form);
+}
+
+// AutoTab voor geboortedatum
+function setupAutoTab() {
+  const day = document.getElementById('birthDay');
+  const month = document.getElementById('birthMonth');
+  const year = document.getElementById('birthYear');
+
+  day.addEventListener('input', () => {
+    if (day.value.length === 2 || parseInt(day.value) > 3) {
+      month.focus();
     }
+  });
 
-    updateProgress();
-  }
-
-  function nextStep() {
-    currentStep++;
-    if (currentStep < totalSteps) {
-      showStep();
+  month.addEventListener('input', () => {
+    if (month.value.length === 2 || parseInt(month.value) > 1) {
+      year.focus();
     }
-  }
-
-  function updateProgress() {
-    const percentage = (currentStep / (totalSteps - 1)) * 100;
-    progress.style.width = `${percentage}%`;
-  }
-
-  function showThanks() {
-    questionContainer.innerHTML = "<h2>Bedankt voor je deelname!</h2><p>We nemen snel contact met je op.</p>";
-  }
-
-  function setupBirthdateInputs() {
-    const day = document.querySelector('input[name="birthDay"]');
-    const month = document.querySelector('input[name="birthMonth"]');
-    const year = document.querySelector('input[name="birthYear"]');
-
-    if (day && month && year) {
-      [day, month, year].forEach((input, index, arr) => {
-        input.addEventListener('input', (e) => {
-          const value = e.target.value;
-
-          if (input.name === "birthDay" && (parseInt(value) >= 4 || value.length >= 2)) {
-            arr[index + 1]?.focus();
-          }
-          if (input.name === "birthMonth" && (parseInt(value) >= 2 || value.length >= 2)) {
-            arr[index + 1]?.focus();
-          }
-          if (input.name === "birthYear" && value.length >= 4) {
-            arr[index + 1]?.blur();
-          }
-        });
-      });
-    }
-  }
-});
+  });
+}
