@@ -1,99 +1,110 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background: #f7f8fc;
   margin: 0;
   padding: 0;
 }
 
-/* Intro sectie */
-.intro-step {
+#intro {
   text-align: center;
-  padding: 30px 20px;
+  padding: 50px 20px;
 }
 
-.hero-image {
-  width: 250px;
-  max-width: 80%;
-  margin-bottom: 20px;
+#intro img {
+  max-width: 150px;
 }
 
-/* Progress header */
-.progress-header {
-  display: flex;
-  align-items: center;
-  background: #eef0fb;
-  padding: 10px 20px;
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.small-image {
-  width: 80px;
-  height: auto;
-}
-
-.progress-info {
-  flex-grow: 1;
-}
-
-.progress-title {
-  margin: 0 0 5px 0;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.progress-bar {
-  position: relative;
-  height: 8px;
-  background: #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  width: 0;
-  background: #ff8800;
-  border-radius: 4px;
-  transition: width 0.5s ease;
-}
-
-/* Survey */
-.survey-container {
-  text-align: center;
-  padding: 20px;
-}
-
-.answer-button {
-  display: block;
-  width: 80%;
-  margin: 10px auto;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  background: #3258e8;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.primary-button {
+#intro h1 {
+  font-size: 32px;
   margin-top: 20px;
+}
+
+#intro p {
+  font-size: 18px;
+  margin: 10px 0 30px;
+}
+
+#startButton {
+  background-color: #1e32e5;
+  color: #fff;
+  font-weight: 600;
   padding: 14px 24px;
-  font-size: 16px;
-  background: #1e32e5;
-  color: white;
+  font-size: 18px;
+  border-radius: 10px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#startButton:hover {
+  background-color: #1828b7;
 }
 
 .hidden {
   display: none;
+}
+
+#progressHeader {
+  display: flex;
+  align-items: center;
+  background: #e7e9f7;
+  padding: 10px 20px;
+  gap: 20px;
+}
+
+#smallImage {
+  width: 80px;
+  height: auto;
+}
+
+.progress-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+#progressContainer {
+  background: #ddd;
+  width: 300px;
+  height: 8px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#progressBar {
+  background: orange;
+  width: 0%;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+#survey {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+#survey h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+#answers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#answers button {
+  background-color: #335eea;
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#answers button:hover {
+  background-color: #2a49bb;
 }
