@@ -1,79 +1,99 @@
-
 body {
   font-family: Arial, sans-serif;
+  background: #f7f8fc;
   margin: 0;
   padding: 0;
-  background: #f7f8fc;
 }
-.hero {
-  background: #e3e7ff;
-  padding: 20px;
+
+/* Intro sectie */
+.intro-step {
   text-align: center;
+  padding: 30px 20px;
 }
-.hero img {
-  max-width: 100%;
-  height: auto;
-  transition: all 0.5s ease;
+
+.hero-image {
+  width: 250px;
+  max-width: 80%;
+  margin-bottom: 20px;
 }
-.progressbar-wrapper {
-  display: none;
+
+/* Progress header */
+.progress-header {
+  display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 20px;
+  background: #eef0fb;
+  padding: 10px 20px;
 }
-.progress-text {
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.small-image {
+  width: 80px;
+  height: auto;
+}
+
+.progress-info {
+  flex-grow: 1;
+}
+
+.progress-title {
+  margin: 0 0 5px 0;
+  font-size: 14px;
   font-weight: bold;
 }
-.progressbar {
-  flex: 1;
-  height: 6px;
-  background: #eee;
+
+.progress-bar {
   position: relative;
+  height: 8px;
+  background: #ddd;
   border-radius: 4px;
   overflow: hidden;
 }
-.progressbar-fill {
+
+.progress-bar-fill {
   height: 100%;
   width: 0;
-  background: orange;
+  background: #ff8800;
+  border-radius: 4px;
   transition: width 0.5s ease;
 }
-.step {
-  padding: 20px;
+
+/* Survey */
+.survey-container {
   text-align: center;
+  padding: 20px;
 }
-.step h2 {
-  font-size: 24px;
-}
-.options button, .form-submit {
-  background: #2b5dfa;
+
+.answer-button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #3258e8;
   color: white;
   border: none;
-  padding: 14px 20px;
-  margin: 10px 0;
-  width: 100%;
   border-radius: 8px;
-  font-size: 16px;
   cursor: pointer;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+
+.primary-button {
   margin-top: 20px;
-}
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 24px;
   font-size: 16px;
-  width: 100%;
+  background: #1e32e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.birthdate-group {
-  display: flex;
-  gap: 10px;
-}
-.birthdate-group input {
-  flex: 1;
-  text-align: center;
+
+.hidden {
+  display: none;
 }
