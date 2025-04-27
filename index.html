@@ -2,46 +2,42 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-bike Winactie</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-bike winnen</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Intro Hero Section -->
-  <section id="intro-step">
-    <div class="hero">
-      <img src="/images/ebike-hero.jpg" alt="E-bike winnen">
-      <h1>Win een E-bike! 🎉</h1>
-      <p>Beantwoord een paar korte vragen en maak kans op een Gazelle E-bike!</p>
-      <button id="startButton">Ga Verder</button>
-    </div>
+  
+  <!-- Intro stap (grote afbeelding + button) -->
+  <section id="intro-step" class="intro-step">
+    <img src="https://example.com/ebike-large.jpg" alt="E-bike winnen" class="hero-image">
+    <h1>Win een E-bike! 🎉</h1>
+    <p>Beantwoord een paar korte vragen en maak kans op een nieuwe Gazelle E-bike!</p>
+    <button id="start-button" class="primary-button">Ga Verder</button>
   </section>
 
-  <!-- Progressbar en kleine afbeelding -->
-  <header id="progress-header" class="hidden">
-    <div class="progress-container">
-      <img src="/images/ebike-small.jpg" alt="Gazelle E-bike" class="small-image">
+  <!-- Progress header (pas zichtbaar NA klik) -->
+  <header id="progress-header" class="progress-header hidden">
+    <div class="header-content">
+      <img src="https://example.com/ebike-small.jpg" alt="E-bike" class="small-image">
       <div class="progress-info">
         <p class="progress-title">Op weg naar je prijs</p>
-        <div class="progressbar">
-          <div class="progress"></div>
+        <div class="progress-bar">
+          <div class="progress-bar-fill"></div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Survey vragen -->
-  <section id="survey">
+  <!-- Survey container -->
+  <section id="survey-container" class="survey-container hidden">
     <h2>Hoe vaak zit jij op de fiets?</h2>
-    <button class="answer">Elke dag</button>
-    <button class="answer">Paar keer per week</button>
-    <button class="answer">Paar keer per maand</button>
-    <button class="answer">Anders</button>
+    <button class="answer-button">Elke dag</button>
+    <button class="answer-button">Paar keer per week</button>
+    <button class="answer-button">Paar keer per maand</button>
+    <button class="answer-button">Anders</button>
   </section>
 
-  <!-- Scripts -->
-  <script src="/script.js" defer></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
