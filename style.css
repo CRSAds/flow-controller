@@ -1,0 +1,79 @@
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f8fc;
+}
+.hero {
+  background: #e3e7ff;
+  padding: 20px;
+  text-align: center;
+}
+.hero img {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.5s ease;
+}
+.progressbar-wrapper {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin: 20px;
+}
+.progress-text {
+  font-weight: bold;
+}
+.progressbar {
+  flex: 1;
+  height: 6px;
+  background: #eee;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progressbar-fill {
+  height: 100%;
+  width: 0;
+  background: orange;
+  transition: width 0.5s ease;
+}
+.step {
+  padding: 20px;
+  text-align: center;
+}
+.step h2 {
+  font-size: 24px;
+}
+.options button, .form-submit {
+  background: #2b5dfa;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+.birthdate-group {
+  display: flex;
+  gap: 10px;
+}
+.birthdate-group input {
+  flex: 1;
+  text-align: center;
+}
