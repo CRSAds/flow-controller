@@ -1,156 +1,166 @@
-let currentStep = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  const startButton = document.getElementById("startButton");
+  const prelander = document.getElementById("prelander");
+  const flow = document.getElementById("flow");
+  const questionContainer = document.getElementById("questionContainer");
+  const progress = document.getElementById("progress");
+  const progressContainer = document.getElementById("progressContainer");
 
-const questions = [
-  {
-    question: "Hoe vaak zit jij op de fiets?",
-    answers: ["Elke dag", "Paar keer per week", "Paar keer per maand", "Anders"]
-  },
-  {
-    question: "Gebruik je de fiets vooral voor woon-werkverkeer?",
-    answers: ["Ja", "Nee"]
-  },
-  {
-    question: "Ben je geïnteresseerd in elektrische fietsen?",
-    answers: ["Zeker!", "Misschien", "Nee"]
-  },
-  {
-    question: "Vul je gegevens in.",
-    form: "short"
-  },
-  {
-    question: "Nog even je adresgegevens.",
-    form: "long"
-  }
-];
+  let currentStep = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('startButton').addEventListener('click', startQuiz);
-});
+  const steps = [
+    {
+      question: "Hoe vaak zit jij op de fiets?",
+      answers: ["Elke dag", "Paar keer per week", "Paar keer per maand", "Anders"]
+    },
+    {
+      question: "Gebruik je de fiets vooral voor woon-werkverkeer?",
+      answers: ["Ja", "Nee"]
+    },
+    {
+      question: "Ben je geïnteresseerd in elektrische fietsen?",
+      answers: ["Zeker!", "Misschien", "Nee"]
+    },
+    {
+      form: "short"
+    },
+    {
+      form: "long"
+    }
+  ];
 
-function startQuiz() {
-  document.getElementById('header').style.display = 'none';
-  document.getElementById('progressContainer').style.display = 'flex';
-  document.getElementById('questionContainer').style.display = 'block';
-  updateProgressBar();
-  showStep();
-}
+  const totalSteps = steps.length;
 
-function showStep() {
-  const container = document.getElementById('questionContainer');
-  const current = questions[currentStep];
-
-  if (current.form === "short") {
-    container.innerHTML = `
-      <h2>Vul je gegevens in.</h2>
-      <form id="shortForm">
-        <div class="form-group">
-          <label>Geslacht</label>
-          <select required>
-            <option value="">Kies...</option>
-            <option value="De heer">De heer</option>
-            <option value="Mevrouw">Mevrouw</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Voornaam</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group">
-          <label>Achternaam</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group birthdate">
-          <label>Geboortedatum</label>
-          <input type="number" placeholder="DD" required id="day" maxlength="2">
-          <input type="number" placeholder="MM" required id="month" maxlength="2">
-          <input type="number" placeholder="JJJJ" required id="year" maxlength="4">
-        </div>
-        <div class="form-group">
-          <label>E-mail</label>
-          <input type="email" required>
-        </div>
-        <button type="submit" class="form-button">Ga verder</button>
-      </form>
-    `;
-
-    setupBirthdateAutoFocus();
-
-    document.getElementById('shortForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      nextStep();
-    });
-
-  } else if (current.form === "long") {
-    container.innerHTML = `
-      <h2>Nog even je adresgegevens.</h2>
-      <form id="longForm">
-        <div class="form-group">
-          <label>Postcode</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group">
-          <label>Straat & huisnummer</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group">
-          <label>Woonplaats</label>
-          <input type="text" required>
-        </div>
-        <div class="form-group">
-          <label>Telefoonnummer</label>
-          <input type="tel" inputmode="numeric" required>
-        </div>
-        <button type="submit" class="form-button">Ga verder</button>
-      </form>
-    `;
-
-    document.getElementById('longForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      nextStep();
-    });
-
-  } else {
-    container.innerHTML = `
-      <h2>${current.question}</h2>
-      ${current.answers.map(ans => `<button class="answer">${ans}</button>`).join('')}
-    `;
-
-    document.querySelectorAll('.answer').forEach(button => {
-      button.addEventListener('click', nextStep);
-    });
-  }
-}
-
-function nextStep() {
-  currentStep++;
-  updateProgressBar();
-  if (currentStep < questions.length) {
+  startButton.addEventListener("click", () => {
+    prelander.style.display = "none";
+    progressContainer.style.display = "flex";
+    flow.style.display = "block";
     showStep();
-  } else {
-    showThanks();
+  });
+
+  function showStep() {
+    const current = steps[currentStep];
+    if (current.form === "short") {
+      questionContainer.innerHTML = `
+        <form id="shortForm">
+          <div>
+            <label>Geslacht</label>
+            <select name="gender" autocomplete="sex" required>
+              <option value="">Kies...</option>
+              <option value="De heer">De heer</option>
+              <option value="Mevrouw">Mevrouw</option>
+            </select>
+          </div>
+          <div>
+            <label>Voornaam</label>
+            <input type="text" name="firstName" autocomplete="given-name" required>
+          </div>
+          <div>
+            <label>Achternaam</label>
+            <input type="text" name="lastName" autocomplete="family-name" required>
+          </div>
+          <div>
+            <label>Geboortedatum</label>
+            <div class="birthdate-group">
+              <input type="number" name="birthDay" placeholder="DD" maxlength="2" required>
+              <input type="number" name="birthMonth" placeholder="MM" maxlength="2" required>
+              <input type="number" name="birthYear" placeholder="JJJJ" maxlength="4" required>
+            </div>
+          </div>
+          <div>
+            <label>E-mail</label>
+            <input type="email" name="email" autocomplete="email" required>
+          </div>
+          <button type="submit">Ga verder</button>
+        </form>
+      `;
+
+      setupBirthdateInputs();
+
+      document.getElementById("shortForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        nextStep();
+      });
+
+    } else if (current.form === "long") {
+      questionContainer.innerHTML = `
+        <form id="longForm">
+          <div>
+            <label>Postcode</label>
+            <input type="text" name="zip" autocomplete="postal-code" required>
+          </div>
+          <div>
+            <label>Straat & huisnummer</label>
+            <input type="text" name="street" autocomplete="street-address" required>
+          </div>
+          <div>
+            <label>Woonplaats</label>
+            <input type="text" name="city" autocomplete="address-level2" required>
+          </div>
+          <div>
+            <label>Telefoonnummer</label>
+            <input type="tel" name="phone" autocomplete="tel" required>
+          </div>
+          <button type="submit">Verzenden</button>
+        </form>
+      `;
+
+      document.getElementById("longForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        showThanks();
+      });
+
+    } else {
+      questionContainer.innerHTML = `
+        <h2>${current.question}</h2>
+        ${current.answers.map(ans => `<button class="answer">${ans}</button>`).join('')}
+      `;
+
+      document.querySelectorAll('.answer').forEach(button => {
+        button.addEventListener('click', nextStep);
+      });
+    }
+
+    updateProgress();
   }
-}
 
-function updateProgressBar() {
-  const progress = (currentStep / questions.length) * 100;
-  document.getElementById('progress').style.width = `${progress}%`;
-}
+  function nextStep() {
+    currentStep++;
+    if (currentStep < totalSteps) {
+      showStep();
+    }
+  }
 
-function showThanks() {
-  const container = document.getElementById('questionContainer');
-  container.innerHTML = "<h2>Bedankt voor je deelname! 🚲</h2><p>We nemen snel contact met je op.</p>";
-}
+  function updateProgress() {
+    const percentage = (currentStep / (totalSteps - 1)) * 100;
+    progress.style.width = `${percentage}%`;
+  }
 
-function setupBirthdateAutoFocus() {
-  const day = document.getElementById('day');
-  const month = document.getElementById('month');
-  const year = document.getElementById('year');
+  function showThanks() {
+    questionContainer.innerHTML = "<h2>Bedankt voor je deelname!</h2><p>We nemen snel contact met je op.</p>";
+  }
 
-  day.addEventListener('input', () => {
-    if (day.value.length >= 2) month.focus();
-  });
+  function setupBirthdateInputs() {
+    const day = document.querySelector('input[name="birthDay"]');
+    const month = document.querySelector('input[name="birthMonth"]');
+    const year = document.querySelector('input[name="birthYear"]');
 
-  month.addEventListener('input', () => {
-    if (month.value.length >= 2) year.focus();
-  });
-}
+    if (day && month && year) {
+      [day, month, year].forEach((input, index, arr) => {
+        input.addEventListener('input', (e) => {
+          const value = e.target.value;
+
+          if (input.name === "birthDay" && (parseInt(value) >= 4 || value.length >= 2)) {
+            arr[index + 1]?.focus();
+          }
+          if (input.name === "birthMonth" && (parseInt(value) >= 2 || value.length >= 2)) {
+            arr[index + 1]?.focus();
+          }
+          if (input.name === "birthYear" && value.length >= 4) {
+            arr[index + 1]?.blur();
+          }
+        });
+      });
+    }
+  }
+});
