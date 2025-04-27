@@ -1,242 +1,47 @@
+<!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Win een E-bike</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f8fc;
-    }
-    .hero {
-      background: #e3e7ff;
-      padding: 20px;
-      text-align: center;
-    }
-    .hero img {
-      max-width: 100%;
-      height: auto;
-      transition: all 0.5s ease;
-    }
-    .progressbar-wrapper {
-      display: none;
-      align-items: center;
-      gap: 12px;
-      margin: 20px;
-    }
-    .progress-text {
-      font-weight: bold;
-    }
-    .progressbar {
-      flex: 1;
-      height: 6px;
-      background: #eee;
-      position: relative;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .progressbar-fill {
-      height: 100%;
-      width: 0;
-      background: orange;
-      transition: width 0.5s ease;
-    }
-    .step {
-      padding: 20px;
-      text-align: center;
-    }
-    .step h2 {
-      font-size: 24px;
-    }
-    .options button, .form-submit {
-      background: #2b5dfa;
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      margin: 10px 0;
-      width: 100%;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 20px;
-    }
-    input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      width: 100%;
-    }
-    .birthdate-group {
-      display: flex;
-      gap: 10px;
-    }
-    .birthdate-group input {
-      flex: 1;
-      text-align: center;
-    }
-  </style>
+  <title>E-bike Winactie</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<div class="hero" id="hero">
-  <img id="heroImage" src="https://cdn.pixabay.com/photo/2016/11/29/06/17/bicycle-1869187_960_720.jpg" alt="E-bike winnen">
-</div>
+  <!-- Intro Hero Section -->
+  <section id="intro-step">
+    <div class="hero">
+      <img src="/images/ebike-hero.jpg" alt="E-bike winnen">
+      <h1>Win een E-bike! 🎉</h1>
+      <p>Beantwoord een paar korte vragen en maak kans op een Gazelle E-bike!</p>
+      <button id="startButton">Ga Verder</button>
+    </div>
+  </section>
 
-<div class="progressbar-wrapper" id="progressWrapper">
-  <img src="https://cdn.pixabay.com/photo/2016/11/29/06/17/bicycle-1869187_960_720.jpg" alt="E-bike" style="width: 60px;">
-  <div class="progress-text">Op weg naar je prijs</div>
-  <div class="progressbar">
-    <div class="progressbar-fill" id="progressFill"></div>
-  </div>
-</div>
+  <!-- Progressbar en kleine afbeelding -->
+  <header id="progress-header" class="hidden">
+    <div class="progress-container">
+      <img src="/images/ebike-small.jpg" alt="Gazelle E-bike" class="small-image">
+      <div class="progress-info">
+        <p class="progress-title">Op weg naar je prijs</p>
+        <div class="progressbar">
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div id="stepContainer"></div>
+  <!-- Survey vragen -->
+  <section id="survey">
+    <h2>Hoe vaak zit jij op de fiets?</h2>
+    <button class="answer">Elke dag</button>
+    <button class="answer">Paar keer per week</button>
+    <button class="answer">Paar keer per maand</button>
+    <button class="answer">Anders</button>
+  </section>
 
-<script>
-const campaignData = {
-  heroImage: "https://cdn.pixabay.com/photo/2016/11/29/06/17/bicycle-1869187_960_720.jpg",
-  introText: "Win een nieuwe Gazelle E-bike!",
-  steps: [
-    {
-      type: "question",
-      question: "Hoe vaak zit jij op de fiets?",
-      options: ["Elke dag", "Paar keer per week", "Paar keer per maand", "Anders"]
-    },
-    {
-      type: "question",
-      question: "Waar gebruik jij de fiets meestal voor?",
-      options: ["Woon-werkverkeer", "Boodschappen", "Sport", "Anders"]
-    },
-    {
-      type: "shortform",
-      form: [
-        {label: "Voornaam", type: "text"},
-        {label: "Achternaam", type: "text"},
-        {label: "Email", type: "email"},
-        {label: "Geboortedatum", type: "birthdate"}
-      ]
-    },
-    {
-      type: "longform",
-      form: [
-        {label: "Postcode", type: "text"},
-        {label: "Straat & huisnummer", type: "text"},
-        {label: "Woonplaats", type: "text"},
-        {label: "Telefoonnummer", type: "tel"}
-      ]
-    },
-    {
-      type: "thankyou",
-      text: "Bedankt voor je deelname! We nemen contact met je op."
-    }
-  ]
-};
-
-const hero = document.getElementById('hero');
-const progressWrapper = document.getElementById('progressWrapper');
-const progressFill = document.getElementById('progressFill');
-const stepContainer = document.getElementById('stepContainer');
-
-let currentStep = 0;
-
-function renderStep() {
-  const step = campaignData.steps[currentStep];
-  stepContainer.innerHTML = '';
-
-  if (step.type === 'question') {
-    const div = document.createElement('div');
-    div.className = 'step';
-    div.innerHTML = `<h2>${step.question}</h2>`;
-    const optionsDiv = document.createElement('div');
-    optionsDiv.className = 'options';
-
-    step.options.forEach(option => {
-      const button = document.createElement('button');
-      button.textContent = option;
-      button.onclick = nextStep;
-      optionsDiv.appendChild(button);
-    });
-
-    div.appendChild(optionsDiv);
-    stepContainer.appendChild(div);
-
-  } else if (step.type === 'shortform' || step.type === 'longform') {
-    const div = document.createElement('div');
-    div.className = 'step';
-    const form = document.createElement('form');
-
-    step.form.forEach(field => {
-      if (field.type === 'birthdate') {
-        const birthGroup = document.createElement('div');
-        birthGroup.className = 'birthdate-group';
-        birthGroup.innerHTML = `
-          <input type="number" placeholder="DD" maxlength="2">
-          <input type="number" placeholder="MM" maxlength="2">
-          <input type="number" placeholder="JJJJ" maxlength="4">
-        `;
-        form.appendChild(birthGroup);
-      } else {
-        const input = document.createElement('input');
-        input.type = field.type;
-        input.placeholder = field.label;
-        form.appendChild(input);
-      }
-    });
-
-    const submit = document.createElement('button');
-    submit.type = 'submit';
-    submit.className = 'form-submit';
-    submit.textContent = 'Ga Verder';
-    form.appendChild(submit);
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      nextStep();
-    });
-
-    div.appendChild(form);
-    stepContainer.appendChild(div);
-
-  } else if (step.type === 'thankyou') {
-    const div = document.createElement('div');
-    div.className = 'step';
-    div.innerHTML = `<h2>${step.text}</h2>`;
-    stepContainer.appendChild(div);
-  }
-
-  updateProgress();
-}
-
-function nextStep() {
-  currentStep++;
-
-  if (currentStep === 1) {
-    // Eerste klik: hero kleiner maken en progressbar tonen
-    hero.style.transform = "scale(0.7)";
-    progressWrapper.style.display = 'flex';
-  }
-
-  if (currentStep < campaignData.steps.length) {
-    renderStep();
-  }
-}
-
-function updateProgress() {
-  const percent = ((currentStep) / (campaignData.steps.length - 1)) * 100;
-  progressFill.style.width = `${percent}%`;
-}
-
-// Init
-renderStep();
-</script>
+  <!-- Scripts -->
+  <script src="/script.js" defer></script>
 
 </body>
 </html>
