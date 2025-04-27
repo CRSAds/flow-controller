@@ -1,153 +1,113 @@
-/* Algemene layout */
-body { background: pink; }
+/* Algemene basis */
 body {
-  font-family: 'Arial', sans-serif;
-  background: #f7f8fc;
+  font-family: "Inter", sans-serif;
   margin: 0;
-  padding: 20px;
-  text-align: center;
-}
-
-#prelander, #progressContainer, #flow {
-  max-width: 600px;
-  margin: 20px auto;
-}
-
-#prelander img {
-  max-width: 300px;
-  margin-bottom: 20px;
-}
-
-/* Start button */
-#startButton {
-  background-color: #263ded;
-  color: white;
-  font-weight: bold;
-  padding: 14px 24px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-/* Progressbar */
-#progressContainer {
-  display: none;
-  align-items: center;
-  background: #e9ebf6;
-  padding: 12px;
-  gap: 10px;
-}
-
-#progressContainer img {
-  max-height: 50px;
-}
-
-.progress-content {
-  flex: 1;
-}
-
-#progressBar {
-  background: #ddd;
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
-  width: 100%;
-}
-
-#progress {
-  background: #ff9100;
-  height: 100%;
-  width: 0%;
-  transition: width 0.4s ease;
-}
-
-/* Vragen en formulieren */
-#questionContainer {
-  background: #fff;
-  padding: 20px;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* Antwoordknoppen */
-.answer {
-  display: block;
-  width: 100%;
-  margin: 12px 0;
-  padding: 14px;
-  background-color: #3355ff;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
+  padding: 0;
+  background: #f7f8fc;
+  color: #182433;
 }
 
 /* Formulieren */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.custom-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.form-group {
-  width: 100%;
+.custom-form .form-group {
   margin-bottom: 16px;
-  text-align: left;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-select {
+.custom-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #182433;
+}
+
+.custom-form input,
+.custom-form select {
   width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 12px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
   box-sizing: border-box;
 }
 
-/* Form submit button */
-button[type="submit"] {
-  background-color: #263ded;
-  color: white;
-  font-weight: bold;
-  padding: 14px;
+.custom-form .birthdate-group {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-form .birthdate-group input {
+  flex: 1;
+}
+
+.form-button {
   width: 100%;
-  font-size: 16px;
+  background-color: #2a33ea;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 14px;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 12px;
 }
 
-/* Labels */
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-/* Geboortedatum netjes */
-.birthdate-group {
+/* Progressbar */
+#progressContainer {
   display: flex;
-  width: 100%;
-  gap: 10px;
-  margin-bottom: 12px;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #e8eaf6;
 }
 
-.birthdate-group input[type="number"] {
-  flex: 1;
-  min-width: 0;
-  padding: 12px 14px;
-  font-size: 16px;
+#progressContainer img.small-hero {
+  height: 40px;
+  margin-right: 10px;
+}
+
+#progressContainer h2 {
+  font-size: 18px;
+  margin: 0 10px 0 0;
+  font-weight: 700;
+}
+
+#progressBar {
+  background-color: #ddd;
+  height: 8px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progress {
+  background-color: #f58025;
+  height: 100%;
+  width: 0;
+  transition: width 0.4s ease;
+  border-radius: 10px;
+}
+
+/* Secties */
+section {
+  padding: 30px 20px;
   text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+}
+
+#prelander img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+#prelander h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+#prelander p {
+  font-size: 18px;
+  margin-bottom: 20px;
 }
