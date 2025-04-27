@@ -2,38 +2,38 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-bike winnen</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <section id="intro">
+    <img src="https://via.placeholder.com/150x100?text=E-bike" alt="E-bike winnen">
+    <h1>Win een Gazelle E-bike! 🚲</h1>
+    <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
+    <button id="startButton">Doe mee</button>
+  </section>
 
-<!-- Intro Sectie -->
-<section id="intro">
-  <img src="https://via.placeholder.com/300x200.png?text=E-bike+Winactie" alt="E-bike winnen" class="intro-image">
-  <h1>Win een Gazelle E-bike! 🚲</h1>
-  <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
-  <button id="startButton">Doe mee</button>
-</section>
-
-<!-- Progressbar + Vragen -->
-<header id="progressHeader" class="hidden">
-  <div class="small-image">
-    <img src="https://via.placeholder.com/80x50.png?text=E-bike" alt="Kleine E-bike">
-  </div>
-  <div class="progress-info">
-    <span>Op weg naar je prijs</span>
-    <div class="progress-bar">
-      <div class="progress"></div>
+  <header id="progressHeader" class="hidden">
+    <img id="smallImage" src="https://via.placeholder.com/80x60?text=E-bike" alt="E-bike">
+    <div>
+      <p class="progress-title">Op weg naar je prijs</p>
+      <div id="progressContainer">
+        <div id="progressBar"></div>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<section id="survey" class="hidden">
-  <h2 id="question"></h2>
-  <div id="answers"></div>
-</section>
+  <section id="survey" class="hidden">
+    <h2 id="question">Hoe vaak zit jij op de fiets?</h2>
+    <div id="answers">
+      <button>Elke dag</button>
+      <button>Paar keer per week</button>
+      <button>Paar keer per maand</button>
+      <button>Anders</button>
+    </div>
+  </section>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
