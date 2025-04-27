@@ -1,39 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.getElementById('startButton');
-  const introSection = document.getElementById('intro');
-  const progressHeader = document.getElementById('progressHeader');
-  const surveySection = document.getElementById('survey');
-  const progressBar = document.getElementById('progressBar');
-  const answers = document.querySelectorAll('#answers button');
+const questions = [
+  {
+    question: "Hoe vaak zit jij op de fiets?",
+    answers: ["Elke dag", "Paar keer per week", "Paar keer per maand", "Anders"]
+  },
+  {
+    question: "Gebruik je de fiets vooral voor woon-werkverkeer?",
+    answers: ["Ja", "Nee"]
+  },
+  {
+    question: "Ben je geïnteresseerd in elektrische fietsen?",
+    answers: ["Zeker!", "Misschien", "Nee"]
+  }
+];
 
-  let currentQuestion = 0;
-  const totalQuestions = 3; // Aantal vragen dat je hebt
+let currentStep = 0;
 
-  startButton.addEventListener('click', () => {
-    introSection.style.display = 'none';
-    progressHeader.classList.remove('hidden');
-    surveySection.classList.remove('hidden');
-    updateProgress();
-  });
+document.getElementById('startButton').addEventListener('click', () => {
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('progressContainer').classList.add('active');
+  showStep();
+});
 
-  answers.forEach(button => {
+function showStep() {
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = `
+    <h2>${questions[currentStep].question}</h2>
+    ${questions[currentStep].answers.map(ans => `<button class="answer">${ans}</button>`).join('')}
+  `;
+
+  document.querySelectorAll('.answer').forEach(button => {
     button.addEventListener('click', () => {
-      currentQuestion++;
-      if (currentQuestion < totalQuestions) {
-        // Hier kun je nieuwe vragen laden als je meerdere vragen wilt
-        document.getElementById('question').innerText = `Vraag ${currentQuestion + 1}: Nieuwe vraag hier`;
-        updateProgress();
+      currentStep++;
+      updateProgressBar();
+      if (currentStep < questions.length) {
+        showStep();
       } else {
-        // Alle vragen beantwoord
-        document.getElementById('question').innerText = "Bedankt voor je deelname!";
-        document.getElementById('answers').style.display = 'none';
-        updateProgress(100);
+        showThanks();
       }
     });
   });
+}
 
-  function updateProgress(force = null) {
-    let percentage = force !== null ? force : Math.min((currentQuestion / totalQuestions) * 100, 100);
-    progressBar.style.width = `${percentage}%`;
-  }
-});
+function updateProgressBar() {
+  const fill = document.getElementById('progressFill');
+  const percentage = ((currentStep) / questions.length) * 100;
+  fill.style.width = `${percentage}%`;
+}
+
+function showThanks() {
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = `
+    <h2>Bedankt voor je deelname!</h2>
+    <p>We nemen binnenkort contact met je op.</p>
+  `;
+}
