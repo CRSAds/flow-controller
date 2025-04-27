@@ -1,130 +1,71 @@
-body {
-  font-family: "Inter", sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f7f8fc;
-  color: #182433;
-}
-
-.section {
+/* Formulier algemene styling */
+#shortForm {
+  max-width: 500px;
+  margin: 40px auto;
   padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
+  background: #f7f8fc;
+  border-radius: 12px;
 }
 
-.hero-image, .small-hero {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-h1, h2 {
-  margin-bottom: 10px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-.button-primary {
-  background: #2a34e5;
-  color: #fff;
-  border: none;
-  padding: 15px 25px;
-  font-size: 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.button-primary:hover {
-  background: #1c22b5;
-}
-
-.progress-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: #e9ebf5;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.progress-text h2 {
-  font-size: 18px;
-  margin: 0 0 10px 0;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: #d0d0d0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  width: 0%;
-  height: 100%;
-  background: #f58220;
-  transition: width 0.5s;
-}
-
-.question {
-  margin-bottom: 20px;
-}
-
-.question h2 {
-  font-size: 22px;
-  margin-bottom: 15px;
-}
-
-.answer-buttons {
+.form-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-.answer-button {
-  background: #2a34e5;
-  color: white;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.answer-button:hover {
-  background: #1c22b5;
-}
-
-/* Formulier stijlen */
-form {
+.gender-group {
   display: flex;
-  flex-direction: column;
   gap: 20px;
+  justify-content: flex-start;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-select {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.gender-group label {
+  font-weight: 500;
   font-size: 16px;
-  box-sizing: border-box;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 .birthdate-group {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .birthdate-group input {
   flex: 1;
   text-align: center;
+}
+
+/* Button */
+.form-button {
+  background-color: #2439f0;
+  color: white;
+  font-weight: bold;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.form-button:hover {
+  background-color: #1420b5;
 }
