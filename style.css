@@ -1,3 +1,4 @@
+/* Algemene layout */
 body {
   font-family: 'Arial', sans-serif;
   background: #f7f8fc;
@@ -6,19 +7,17 @@ body {
   text-align: center;
 }
 
-#header, #progressContainer, #questionContainer {
-  max-width: 800px;
+#prelander, #progressContainer, #flow {
+  max-width: 600px;
   margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-#header img {
-  max-height: 80px;
+#prelander img {
+  max-width: 300px;
+  margin-bottom: 20px;
 }
 
+/* Start button */
 #startButton {
   background-color: #263ded;
   color: white;
@@ -31,42 +30,51 @@ body {
   cursor: pointer;
 }
 
+/* Progressbar */
 #progressContainer {
   display: none;
   align-items: center;
+  background: #e9ebf6;
   padding: 12px;
-  background: #e8eaf6;
+  gap: 10px;
 }
 
 #progressContainer img {
   max-height: 50px;
-  margin-right: 10px;
+}
+
+.progress-content {
+  flex: 1;
 }
 
 #progressBar {
-  flex: 1;
   background: #ddd;
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
-  margin-left: 10px;
+  width: 100%;
 }
 
 #progress {
   background: #ff9100;
   height: 100%;
   width: 0%;
-  transition: width 0.3s;
+  transition: width 0.4s ease;
 }
 
+/* Vragen en formulieren */
 #questionContainer {
-  display: none;
+  background: #fff;
+  padding: 20px;
+  border-radius: 0;
+  box-shadow: none;
 }
 
+/* Antwoordknoppen */
 .answer {
   display: block;
-  width: 80%;
-  margin: 10px auto;
+  width: 100%;
+  margin: 12px 0;
   padding: 14px;
   background-color: #3355ff;
   color: white;
@@ -77,6 +85,7 @@ body {
   cursor: pointer;
 }
 
+/* Formulieren */
 form {
   display: flex;
   flex-direction: column;
@@ -84,40 +93,51 @@ form {
 }
 
 .form-group {
-  width: 80%;
+  width: 100%;
   margin-bottom: 16px;
   text-align: left;
 }
 
-.form-group input,
-.form-group select {
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  margin-top: 6px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
-.birthdate {
-  display: flex;
-  gap: 8px;
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
 }
 
-.birthdate input {
+.birthdate-group {
+  display: flex;
+  gap: 10px;
+}
+
+.birthdate-group input[type="number"] {
   flex: 1;
   text-align: center;
+  padding: 12px;
+  font-size: 16px;
 }
 
-.form-button {
+button[type="submit"] {
   background-color: #263ded;
   color: white;
   font-weight: bold;
   padding: 14px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
 }
