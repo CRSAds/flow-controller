@@ -7,37 +7,33 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <!-- Intro stap (grote afbeelding + button) -->
-  <section id="intro-step" class="intro-step">
-    <img src="https://example.com/ebike-large.jpg" alt="E-bike winnen" class="hero-image">
-    <h1>Win een E-bike! 🎉</h1>
-    <p>Beantwoord een paar korte vragen en maak kans op een nieuwe Gazelle E-bike!</p>
-    <button id="start-button" class="primary-button">Ga Verder</button>
-  </section>
 
-  <!-- Progress header (pas zichtbaar NA klik) -->
-  <header id="progress-header" class="progress-header hidden">
-    <div class="header-content">
-      <img src="https://example.com/ebike-small.jpg" alt="E-bike" class="small-image">
-      <div class="progress-info">
-        <p class="progress-title">Op weg naar je prijs</p>
-        <div class="progress-bar">
-          <div class="progress-bar-fill"></div>
-        </div>
-      </div>
+<!-- Intro Sectie -->
+<section id="intro">
+  <img src="https://via.placeholder.com/300x200.png?text=E-bike+Winactie" alt="E-bike winnen" class="intro-image">
+  <h1>Win een Gazelle E-bike! 🚲</h1>
+  <p>Beantwoord een paar vragen en maak kans op een nieuwe e-bike!</p>
+  <button id="startButton">Doe mee</button>
+</section>
+
+<!-- Progressbar + Vragen -->
+<header id="progressHeader" class="hidden">
+  <div class="small-image">
+    <img src="https://via.placeholder.com/80x50.png?text=E-bike" alt="Kleine E-bike">
+  </div>
+  <div class="progress-info">
+    <span>Op weg naar je prijs</span>
+    <div class="progress-bar">
+      <div class="progress"></div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Survey container -->
-  <section id="survey-container" class="survey-container hidden">
-    <h2>Hoe vaak zit jij op de fiets?</h2>
-    <button class="answer-button">Elke dag</button>
-    <button class="answer-button">Paar keer per week</button>
-    <button class="answer-button">Paar keer per maand</button>
-    <button class="answer-button">Anders</button>
-  </section>
+<section id="survey" class="hidden">
+  <h2 id="question"></h2>
+  <div id="answers"></div>
+</section>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
